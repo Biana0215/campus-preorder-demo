@@ -1,0 +1,187 @@
+.success-page {
+  min-height: 100vh;
+  padding: 48rpx 24rpx 220rpx;
+}
+
+.success-header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.success-mark {
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 50%;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-size: 52rpx;
+  font-weight: 700;
+  line-height: 104rpx;
+  text-align: center;
+}
+
+.success-title {
+  margin-top: 20rpx;
+  font-size: 40rpx;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.success-subtitle {
+  margin-top: 6rpx;
+  color: var(--color-text-secondary);
+  font-size: 23rpx;
+  line-height: 1.6;
+}
+
+.ticket-card {
+  margin-top: 34rpx;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--color-card);
+  box-shadow: 0 10rpx 36rpx rgba(69, 46, 29, 0.07);
+}
+
+.ticket-top {
+  padding: 38rpx 32rpx 30rpx;
+  background: linear-gradient(180deg, #FFF6F0 0%, #FFFFFF 100%);
+  text-align: center;
+}
+
+.code-caption {
+  display: block;
+  color: var(--color-text-secondary);
+  font-size: 22rpx;
+  letter-spacing: 2rpx;
+}
+
+.pickup-code {
+  display: block;
+  margin-top: 8rpx;
+  padding-left: 14rpx;
+  color: var(--color-primary);
+  font-size: 96rpx;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 14rpx;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.code-tip {
+  display: block;
+  margin-top: 14rpx;
+  color: var(--color-text-secondary);
+  font-size: 23rpx;
+  line-height: 1.6;
+}
+
+.ticket-divider {
+  margin: 0 32rpx;
+  border-top: 1rpx dashed #E9DED4;
+}
+
+.ticket-info {
+  padding: 26rpx 32rpx 32rpx;
+}
+
+.info-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.info-row-last {
+  margin-bottom: 0;
+}
+
+.info-label {
+  width: 132rpx;
+  flex: none;
+  color: var(--color-text-light);
+  font-size: 23rpx;
+  line-height: 1.6;
+}
+
+.info-value {
+  flex: 1;
+  color: var(--color-text);
+  font-size: 25rpx;
+  line-height: 1.6;
+  text-align: right;
+}
+
+.pickup-time {
+  color: var(--color-primary);
+  font-size: 27rpx;
+  font-weight: 600;
+}
+
+.pickup-reminder {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 24rpx;
+  padding: 22rpx 24rpx;
+  border: 1rpx solid #F6E4DA;
+  border-radius: var(--radius);
+  background: #FFF7F1;
+}
+
+.reminder-dot {
+  width: 10rpx;
+  height: 10rpx;
+  flex: none;
+  margin-top: 11rpx;
+  margin-right: 14rpx;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+.reminder-text {
+  flex: 1;
+  color: var(--color-text-secondary);
+  font-size: 21rpx;
+  line-height: 1.65;
+}
+
+.missing-card {
+  margin-top: 34rpx;
+  padding: 60rpx 32rpx;
+  border-radius: var(--radius);
+  background: var(--color-card);
+  box-shadow: 0 10rpx 36rpx rgba(69, 46, 29, 0.07);
+  text-align: center;
+}
+
+.missing-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.missing-desc {
+  display: block;
+  margin-top: 8rpx;
+  color: var(--color-text-light);
+  font-size: 22rpx;
+  line-height: 1.7;
+}
+
+.action-bar {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 20;
+  padding: 20rpx 24rpx calc(20rpx + env(safe-area-inset-bottom));
+  border-top: 1rpx solid var(--color-line);
+  background: var(--color-card);
+  box-shadow: 0 -6rpx 24rpx rgba(77, 48, 30, 0.06);
+}
+
+.view-order-button {
+  width: 100%;
+}

@@ -1,0 +1,52 @@
+<view class="success-page">
+  <view class="success-header">
+    <view class="success-mark">✓</view>
+    <text class="success-title">预订成功</text>
+    <text class="success-subtitle">门店已收到你的预订，记得按时来取</text>
+  </view>
+
+  <block wx:if="{{loaded}}">
+    <view class="ticket-card" wx:if="{{order}}">
+      <view class="ticket-top">
+        <text class="code-caption">取货码</text>
+        <text class="pickup-code">{{order.pickupCode}}</text>
+        <text class="code-tip">请在此时间段到店，向店员出示此码</text>
+      </view>
+
+      <view class="ticket-divider"></view>
+
+      <view class="ticket-info">
+        <view class="info-row">
+          <text class="info-label">取货时段</text>
+          <text class="info-value pickup-time">{{order.pickupSlot}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">取货门店</text>
+          <text class="info-value">{{order.storeName}}</text>
+        </view>
+        <view class="info-row info-row-last">
+          <text class="info-label">门店地址</text>
+          <text class="info-value">{{order.storeAddress}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="missing-card" wx:else>
+      <text class="missing-title">未找到订单信息</text>
+      <text class="missing-desc">请前往「我的订单」查看已提交的订单。</text>
+    </view>
+
+    <view class="pickup-reminder" wx:if="{{order}}">
+      <view class="reminder-dot"></view>
+      <text class="reminder-text">到店后请向店员出示本页面，或直接报出 4 位取货码。取货前可在「我的订单」取消。</text>
+    </view>
+  </block>
+
+  <view class="action-bar">
+    <button
+      class="primary-button view-order-button"
+      hover-class="primary-button-hover"
+      bindtap="goOrders"
+    >查看我的订单</button>
+  </view>
+</view>

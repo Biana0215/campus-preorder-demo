@@ -1,0 +1,105 @@
+<view class="goods-page">
+  <block wx:if="{{loading}}">
+    <view class="sk-block sk-intro"></view>
+    <view class="filter-panel sk-filter-panel">
+      <view class="sk-line sk-filter-line"></view>
+      <view class="sk-line sk-filter-line sk-filter-line-short"></view>
+    </view>
+    <view class="sk-list-head">
+      <view class="sk-line sk-list-title"></view>
+      <view class="sk-line sk-list-count"></view>
+    </view>
+    <view class="sk-goods-grid">
+      <view class="sk-goods-card" wx:for="{{skeletonCards}}" wx:key="*this">
+        <view class="sk-block sk-thumb"></view>
+        <view class="sk-line sk-name-line"></view>
+        <view class="sk-line sk-tag-line"></view>
+        <view class="sk-line sk-price-line"></view>
+      </view>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="intro-card">
+      <text class="intro-kicker">MULTI-STORE PRE-ORDER</text>
+      <text class="intro-title">多店可选，按点来取</text>
+      <text class="intro-desc">每家商户独立接单 · 明日分时自提</text>
+    </view>
+
+    <view class="filter-panel">
+      <view class="filter-group">
+        <text class="filter-label">商家</text>
+        <scroll-view class="filter-scroll" scroll-x="true" show-scrollbar="{{false}}">
+          <view class="filter-options">
+            <view
+              class="filter-chip {{activeStoreId === item.id ? 'is-active' : ''}}"
+              wx:for="{{stores}}"
+              wx:key="id"
+              data-id="{{item.id}}"
+              bindtap="onStoreTap"
+            >{{item.shortName}}</view>
+          </view>
+        </scroll-view>
+      </view>
+
+      <view class="filter-group">
+        <text class="filter-label">分类</text>
+        <scroll-view class="filter-scroll" scroll-x="true" show-scrollbar="{{false}}">
+          <view class="filter-options">
+            <view
+              class="filter-chip {{activeCategory === item.id ? 'is-active' : ''}}"
+              wx:for="{{categories}}"
+              wx:key="id"
+              data-id="{{item.id}}"
+              bindtap="onCategoryTap"
+            >{{item.name}}</view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+
+    <view class="list-head">
+      <view class="list-summary">
+        <text class="list-title">{{activeStoreName}}</text>
+        <text class="list-dot">·</text>
+        <text class="list-category">{{activeCategoryName}}</text>
+      </view>
+      <text class="list-count">共 {{list.length}} 款</text>
+    </view>
+
+    <view class="goods-grid" wx:if="{{list.length > 0}}">
+      <view
+        class="goods-card"
+        wx:for="{{list}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="goDetail"
+      >
+        <view class="goods-thumb tone-{{item.tone}}">
+          <text class="goods-emoji">{{item.emoji}}</text>
+          <text class="presale-badge" wx:if="{{item.isPresale}}">预售</text>
+          <text class="goods-store-badge">{{item.storeShortName}}</text>
+        </view>
+        <view class="goods-body">
+          <text class="goods-name">{{item.name}}</text>
+          <text class="goods-tag">{{item.tag}}</text>
+          <view class="goods-footer">
+            <view class="price">
+              <text class="price-symbol">¥</text>
+              <text class="price-value goods-price">{{item.priceText}}</text>
+              <text class="price-suffix" wx:if="{{item.hasSpecs}}">起</text>
+            </view>
+            <view class="preorder-link">预订</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:else>
+      <text class="empty-icon">🍽️</text>
+      <text class="empty-title">这个组合还没有商品</text>
+      <text class="empty-desc">换一个商家或分类，或者看看全部商品。</text>
+      <button class="empty-reset" bindtap="resetFilters">查看全部商品</button>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,124 @@
+page {
+  --color-primary: #E8552D;
+  --color-primary-dark: #C9421E;
+  --color-primary-soft: #FFF1EB;
+  --color-bg: #FAF8F5;
+  --color-card: #FFFFFF;
+  --color-text: #2C2420;
+  --color-text-secondary: #7C7169;
+  --color-text-light: #A69B92;
+  --color-line: #F0E8E1;
+  --radius: 16rpx;
+
+  min-height: 100%;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  font-size: 28rpx;
+  line-height: 1.5;
+}
+
+view,
+text,
+button,
+input,
+textarea,
+scroll-view {
+  box-sizing: border-box;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+}
+
+button::after {
+  border: none;
+}
+
+/* 列表页通用骨架屏 */
+.sk-block {
+  background: #F0E9E1;
+  border-radius: 10rpx;
+}
+
+.sk-line {
+  height: 22rpx;
+  border-radius: 6rpx;
+  background: #F0E9E1;
+}
+
+/* 商品图片占位色块 */
+.tone-butter {
+  background: linear-gradient(135deg, #FFF4D6 0%, #F7D992 100%);
+}
+
+.tone-peach {
+  background: linear-gradient(135deg, #FDE8DB 0%, #F3C6A8 100%);
+}
+
+.tone-sage {
+  background: linear-gradient(135deg, #EBF1E2 0%, #C9D9B6 100%);
+}
+
+.tone-cocoa {
+  background: linear-gradient(135deg, #F0E2D8 0%, #D5B6A2 100%);
+}
+
+.tone-cream {
+  background: linear-gradient(135deg, #FCF5E9 0%, #EBD9BB 100%);
+}
+
+.tone-berry {
+  background: linear-gradient(135deg, #F7E3E3 0%, #E4B8BA 100%);
+}
+
+/* 价格 */
+.price {
+  display: inline-flex;
+  align-items: baseline;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.price-symbol {
+  margin-right: 2rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.price-value {
+  font-size: 38rpx;
+  line-height: 1.15;
+}
+
+.price-suffix {
+  margin-left: 4rpx;
+  color: var(--color-text-light);
+  font-size: 22rpx;
+  font-weight: 400;
+}
+
+.price--large .price-value {
+  font-size: 54rpx;
+}
+
+/* 主按钮 */
+.primary-button {
+  height: 88rpx;
+  border-radius: var(--radius);
+  background: var(--color-primary);
+  color: #FFFFFF;
+  font-size: 30rpx;
+  font-weight: 600;
+  line-height: 88rpx;
+  text-align: center;
+}
+
+.primary-button-hover {
+  background: var(--color-primary-dark);
+}

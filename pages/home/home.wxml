@@ -1,0 +1,182 @@
+<view class="home-page">
+  <block wx:if="{{loading}}">
+    <view class="sk-block sk-hero"></view>
+    <view class="sk-section">
+      <view class="sk-line sk-title-line"></view>
+      <view class="sk-store" wx:for="{{skeletonStores}}" wx:key="*this">
+        <view class="sk-block sk-avatar"></view>
+        <view class="sk-store-copy">
+          <view class="sk-line sk-line-lg"></view>
+          <view class="sk-line sk-line-sm"></view>
+        </view>
+      </view>
+    </view>
+    <view class="sk-section">
+      <view class="sk-line sk-title-line"></view>
+      <view class="sk-block sk-grid-card"></view>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="hero-card">
+      <text class="hero-kicker">CAMPUS PRE-ORDER</text>
+      <text class="hero-title">校园好味，提前订</text>
+      <text class="hero-subtitle">多店可选 · 分时自提 · 少排队</text>
+
+      <view class="hero-facts">
+        <view class="hero-fact">
+          <text class="hero-fact-value">{{stores.length}}</text>
+          <text class="hero-fact-label">家校园好店</text>
+        </view>
+        <view class="hero-fact-divider"></view>
+        <view class="hero-fact">
+          <text class="hero-fact-value">{{pickupSlotCount}}</text>
+          <text class="hero-fact-label">个取货时段</text>
+        </view>
+        <view class="hero-fact-divider"></view>
+        <view class="hero-fact">
+          <text class="hero-fact-value">{{categories.length}}</text>
+          <text class="hero-fact-label">大品类</text>
+        </view>
+      </view>
+
+      <view class="hero-notice">提前预订，明日按所选时段到店自取。</view>
+    </view>
+
+    <view class="orders-entry" bindtap="goOrders">
+      <view class="orders-entry-icon">🎟️</view>
+      <view class="orders-entry-copy">
+        <text class="orders-entry-title">我的订单</text>
+        <text class="orders-entry-sub">{{myOrdersHint}}</text>
+      </view>
+      <view class="orders-entry-right">
+        <text class="orders-entry-count" wx:if="{{myPendingCount > 0}}">{{myPendingCount}}</text>
+        <text class="orders-entry-arrow">›</text>
+      </view>
+    </view>
+
+    <block wx:if="{{stores.length > 0}}">
+      <view class="section">
+        <view class="section-head">
+          <view>
+            <text class="section-title">校园好店</text>
+            <text class="section-subtitle">{{stores.length}} 家认证商家 · 各自接单</text>
+          </view>
+          <view class="section-link" bindtap="goGoods">
+            <text>全部商品</text>
+            <text class="link-arrow">›</text>
+          </view>
+        </view>
+
+        <view class="store-list">
+          <view
+            class="store-card"
+            wx:for="{{stores}}"
+            wx:key="id"
+            data-id="{{item.id}}"
+            bindtap="onStoreTap"
+          >
+            <view class="store-mark tone-{{item.tone}}">{{item.mark}}</view>
+
+            <view class="store-info">
+              <view class="store-name-row">
+                <text class="store-name">{{item.name}}</text>
+                <text class="store-specialty">{{item.specialty}}</text>
+              </view>
+              <text class="store-tagline">{{item.tagline}}</text>
+              <view class="store-meta">
+                <text>{{item.businessHours}}</text>
+                <text class="meta-dot">·</text>
+                <text>{{item.goodsCount}} 款可订</text>
+              </view>
+              <text class="store-address">{{item.address}}</text>
+            </view>
+
+            <view class="store-enter">
+              <text>进店</text>
+              <text class="store-arrow">›</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="section">
+        <view class="section-head">
+          <view>
+            <text class="section-title">按分类逛</text>
+            <text class="section-subtitle">跨店筛选，喜欢什么点什么</text>
+          </view>
+        </view>
+
+        <view class="category-grid">
+          <view
+            class="category-card"
+            wx:for="{{categories}}"
+            wx:key="id"
+            data-id="{{item.id}}"
+            bindtap="onCategoryTap"
+          >
+            <view class="category-icon tone-{{item.tone}}">{{item.icon}}</view>
+            <view class="category-info">
+              <text class="category-name">{{item.name}}</text>
+              <text class="category-count">{{item.count}} 款可选</text>
+            </view>
+            <text class="category-arrow">›</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="section">
+        <view class="section-head">
+          <view>
+            <text class="section-title">多店推荐</text>
+            <text class="section-subtitle">三家招牌，各有各的好</text>
+          </view>
+        </view>
+
+        <view class="recommend-grid">
+          <view
+            class="recommend-card"
+            wx:for="{{featuredGoods}}"
+            wx:key="id"
+            data-id="{{item.id}}"
+            bindtap="goDetail"
+          >
+            <view class="recommend-thumb tone-{{item.tone}}">
+              <text class="recommend-emoji">{{item.emoji}}</text>
+              <text class="presale-badge" wx:if="{{item.isPresale}}">预售</text>
+              <text class="recommend-store-badge">{{item.storeShortName}}</text>
+            </view>
+            <view class="recommend-body">
+              <text class="recommend-name">{{item.name}}</text>
+              <text class="recommend-tag">{{item.tag}}</text>
+              <view class="recommend-bottom">
+                <view class="price">
+                  <text class="price-symbol">¥</text>
+                  <text class="price-value recommend-price">{{item.priceText}}</text>
+                  <text class="price-suffix" wx:if="{{item.hasSpecs}}">起</text>
+                </view>
+                <view class="recommend-action">预订</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="pickup-tip">
+        <view class="tip-icon">⏰</view>
+        <view class="tip-copy">
+          <text class="tip-title">一次逛多家，分时取货</text>
+          <text class="tip-desc">每家商户独立接单，下单后生成 4 位取货码，按预约时段到店即可。</text>
+        </view>
+      </view>
+    </block>
+
+    <view class="home-empty" wx:else>
+      <text class="empty-icon">🏪</text>
+      <text class="empty-title">门店正在准备中</text>
+      <text class="empty-desc">下拉刷新或稍后重试，马上就能逛。</text>
+      <button class="empty-retry" bindtap="onRetry">重新加载</button>
+    </view>
+  </block>
+</view>

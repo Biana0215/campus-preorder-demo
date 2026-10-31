@@ -1,0 +1,82 @@
+<view class="detail-page" wx:if="{{goods}}">
+  <view class="product-hero tone-{{goods.tone}}">
+    <text class="hero-emoji">{{goods.emoji}}</text>
+    <text class="hero-badge" wx:if="{{goods.isPresale}}">预售 · 明日自提</text>
+    <text class="hero-category">{{categoryName}}</text>
+  </view>
+
+  <view class="overview-card">
+    <view class="title-row">
+      <text class="product-name">{{goods.name}}</text>
+      <text class="product-tag">{{goods.tag}}</text>
+    </view>
+    <text class="product-desc">{{goods.desc}}</text>
+
+    <view class="merchant-strip">
+      <view class="merchant-mark tone-{{store.tone}}">{{store.mark}}</view>
+      <view class="merchant-info">
+        <view class="merchant-name-row">
+          <text class="merchant-name">{{store.name}}</text>
+          <text class="merchant-specialty">{{store.specialty}}</text>
+        </view>
+        <text class="merchant-address">{{store.address}}</text>
+      </view>
+    </view>
+
+    <view class="overview-bottom">
+      <view class="price price--large">
+        <text class="price-symbol">¥</text>
+        <text class="price-value">{{selectedPriceText}}</text>
+      </view>
+      <text class="price-caption">已选 {{selectedSpec.name}}</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-head">
+      <text class="card-title">选择规格</text>
+      <text class="card-hint">必选</text>
+    </view>
+    <view class="spec-list">
+      <view
+        class="spec-item {{selectedSpecIndex === index ? 'is-active' : ''}}"
+        wx:for="{{specOptions}}"
+        wx:key="name"
+        data-index="{{index}}"
+        bindtap="onSpecTap"
+      >
+        <text class="spec-name">{{item.name}}</text>
+        <text class="spec-price">¥{{item.priceText}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="next-step">
+    <view class="next-step-index">2</view>
+    <view class="next-step-copy">
+      <text class="next-step-title">下一步：确认取货信息</text>
+      <text class="next-step-desc">取货时段与取货人统一下单页选择，不再重复填写。</text>
+    </view>
+  </view>
+
+  <view class="order-note">
+    <text class="order-note-title">预订说明</text>
+    <text class="order-note-line">· 本商品为预售商品，请确认规格后再进入下单页。</text>
+    <text class="order-note-line">· 取货前可在「我的订单」中取消，取货码会同步失效。</text>
+  </view>
+
+  <view class="action-bar">
+    <view class="action-price">
+      <text class="action-label">合计</text>
+      <view class="price">
+        <text class="price-symbol">¥</text>
+        <text class="price-value action-price-value">{{selectedPriceText}}</text>
+      </view>
+    </view>
+    <button
+      class="primary-button book-button"
+      hover-class="primary-button-hover"
+      bindtap="onBook"
+    >立即预订</button>
+  </view>
+</view>

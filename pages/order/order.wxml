@@ -1,0 +1,116 @@
+<view class="order-page" wx:if="{{goods}}">
+  <view class="page-head">
+    <text class="page-kicker">PICKUP ORDER</text>
+    <text class="page-title">确认取货信息</text>
+    <text class="page-subtitle">统一选择取货时段、填写取货人</text>
+  </view>
+
+  <view class="card">
+    <view class="summary-main">
+      <view class="summary-thumb tone-{{goods.tone}}">{{goods.emoji}}</view>
+      <view class="summary-info">
+        <text class="summary-name">{{goods.name}}</text>
+        <text class="summary-spec">{{selectedSpec.name}} · 数量 1</text>
+        <text class="summary-status" wx:if="{{goods.isPresale}}">预售 · 明日自提</text>
+      </view>
+      <text class="summary-price">¥{{selectedPriceText}}</text>
+    </view>
+
+    <view class="divider"></view>
+
+    <view class="store-head">
+      <text class="store-name">{{store.name}}</text>
+      <text class="store-hours">{{store.businessHours}}</text>
+    </view>
+    <text class="store-address">{{store.address}}</text>
+  </view>
+
+  <view class="card">
+    <view class="card-head">
+      <text class="card-title">取货时段</text>
+      <text class="card-hint">请选择</text>
+    </view>
+    <radio-group class="slot-grid" bindchange="onSlotChange">
+      <label
+        class="slot-item {{selectedSlotIndex === index ? 'is-active' : ''}}"
+        wx:for="{{pickupSlots}}"
+        wx:key="*this"
+      >
+        <radio value="{{index}}" checked="{{selectedSlotIndex === index}}" color="#E8552D" />
+        <text class="slot-label">{{item}}</text>
+      </label>
+    </radio-group>
+    <text class="slot-hint">{{store.pickupTip}}</text>
+  </view>
+
+  <view class="card">
+    <view class="field">
+      <view class="field-head">
+        <text class="field-label">取货人</text>
+        <text class="required-mark">*</text>
+      </view>
+      <input
+        class="text-input"
+        value="{{pickupPerson}}"
+        maxlength="12"
+        placeholder="请输入取货人姓名"
+        placeholder-class="input-placeholder"
+        bindinput="onPersonInput"
+      />
+    </view>
+
+    <view class="field field-last">
+      <view class="field-head">
+        <text class="field-label">备注</text>
+        <text class="field-optional">选填</text>
+      </view>
+      <textarea
+        class="note-input"
+        value="{{note}}"
+        maxlength="60"
+        placeholder="如有忌口或包装要求，可以写在这里"
+        placeholder-class="input-placeholder"
+        bindinput="onNoteInput"
+      ></textarea>
+      <text class="char-count">{{note.length}}/60</text>
+    </view>
+  </view>
+
+  <view class="total-card">
+    <view class="total-row">
+      <text class="total-label">商品金额</text>
+      <text class="total-value">¥{{selectedPriceText}}</text>
+    </view>
+    <view class="total-row">
+      <text class="total-label">取货服务费</text>
+      <text class="total-value">¥0.00</text>
+    </view>
+    <view class="total-divider"></view>
+    <view class="total-row total-row-final">
+      <text class="total-final-label">合计</text>
+      <view class="price">
+        <text class="price-symbol">¥</text>
+        <text class="price-value total-price">{{selectedPriceText}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="agreement">
+    <text>提交后会生成 4 位取货码。取货前可在「我的订单」中取消，取消后取货码自动失效。</text>
+  </view>
+
+  <view class="action-bar">
+    <view class="action-price">
+      <text class="action-label">合计</text>
+      <view class="price">
+        <text class="price-symbol">¥</text>
+        <text class="price-value action-price-value">{{selectedPriceText}}</text>
+      </view>
+    </view>
+    <button
+      class="primary-button submit-button"
+      hover-class="primary-button-hover"
+      bindtap="onSubmit"
+    >提交订单</button>
+  </view>
+</view>

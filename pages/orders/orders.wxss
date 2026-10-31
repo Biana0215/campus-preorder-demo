@@ -1,0 +1,393 @@
+.orders-page {
+  padding: 24rpx 24rpx 48rpx;
+}
+
+/* 骨架屏 */
+.sk-header {
+  height: 210rpx;
+  border-radius: var(--radius);
+}
+
+.sk-order {
+  margin-top: 18rpx;
+  padding: 24rpx;
+  border-radius: var(--radius);
+  background: var(--color-card);
+}
+
+.sk-order-title {
+  width: 52%;
+  height: 26rpx;
+}
+
+.sk-order-product {
+  height: 110rpx;
+  margin-top: 20rpx;
+}
+
+.sk-order-code {
+  height: 90rpx;
+  margin-top: 18rpx;
+}
+
+/* 页面头 */
+.orders-header {
+  padding: 8rpx 4rpx 4rpx;
+}
+
+.page-kicker {
+  display: block;
+  color: var(--color-primary);
+  font-size: 18rpx;
+  font-weight: 700;
+  letter-spacing: 4rpx;
+}
+
+.page-title {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 40rpx;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.page-subtitle {
+  display: block;
+  margin-top: 4rpx;
+  color: var(--color-text-secondary);
+  font-size: 22rpx;
+}
+
+.orders-summary {
+  display: flex;
+  align-items: center;
+  margin-top: 22rpx;
+  padding: 20rpx 0;
+  border-radius: var(--radius);
+  background: var(--color-card);
+  box-shadow: 0 4rpx 18rpx rgba(69, 46, 29, 0.04);
+}
+
+.summary-block {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  flex-direction: column;
+}
+
+.summary-value {
+  color: var(--color-text);
+  font-size: 38rpx;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.summary-value-primary {
+  color: var(--color-primary);
+}
+
+.summary-label {
+  margin-top: 4rpx;
+  color: var(--color-text-light);
+  font-size: 20rpx;
+}
+
+.summary-divider {
+  width: 1rpx;
+  height: 46rpx;
+  background: var(--color-line);
+}
+
+/* 分组 */
+.order-groups {
+  margin-top: 28rpx;
+}
+
+.order-group {
+  margin-bottom: 28rpx;
+}
+
+.group-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 2rpx 14rpx;
+}
+
+.group-title-wrap {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.group-dot {
+  width: 12rpx;
+  height: 12rpx;
+  flex: none;
+  margin-right: 10rpx;
+  border-radius: 50%;
+}
+
+.group-dot-pending {
+  background: var(--color-primary);
+}
+
+.group-dot-picked {
+  background: #78A86E;
+}
+
+.group-dot-cancelled {
+  background: #B5A99F;
+}
+
+.group-dot-expired {
+  background: #A88470;
+}
+
+.group-title {
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.group-count {
+  margin-left: 8rpx;
+  color: var(--color-text-light);
+  font-size: 20rpx;
+}
+
+.group-hint {
+  flex: none;
+  margin-left: 12rpx;
+  color: var(--color-text-light);
+  font-size: 20rpx;
+}
+
+/* 订单卡 */
+.order-card {
+  margin-bottom: 14rpx;
+  padding: 24rpx;
+  border-radius: var(--radius);
+  background: var(--color-card);
+  box-shadow: 0 4rpx 18rpx rgba(69, 46, 29, 0.04);
+}
+
+.order-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.order-store {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.store-dot {
+  width: 8rpx;
+  height: 8rpx;
+  flex: none;
+  margin-right: 8rpx;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+.order-store-name {
+  overflow: hidden;
+  font-size: 23rpx;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.status-tag {
+  flex: none;
+  margin-left: 12rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 999rpx;
+  font-size: 19rpx;
+  font-weight: 600;
+}
+
+.status-pending {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.status-picked {
+  background: #EDF6EA;
+  color: #5F9657;
+}
+
+.status-cancelled {
+  background: #F1EEEA;
+  color: #8C8279;
+}
+
+.status-expired {
+  background: #F5EFE9;
+  color: #9B7B68;
+}
+
+.order-product {
+  display: flex;
+  align-items: center;
+  margin-top: 18rpx;
+}
+
+.product-thumb {
+  width: 92rpx;
+  height: 92rpx;
+  flex: none;
+  border-radius: 12rpx;
+  font-size: 44rpx;
+  line-height: 92rpx;
+  text-align: center;
+}
+
+.product-main {
+  flex: 1;
+  min-width: 0;
+  margin-left: 16rpx;
+}
+
+.product-name {
+  display: block;
+  overflow: hidden;
+  font-size: 27rpx;
+  font-weight: 600;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.product-spec {
+  display: block;
+  margin-top: 2rpx;
+  color: var(--color-text-secondary);
+  font-size: 20rpx;
+}
+
+.product-slot {
+  display: block;
+  margin-top: 3rpx;
+  color: var(--color-primary);
+  font-size: 21rpx;
+  font-weight: 500;
+}
+
+.product-price {
+  flex: none;
+  margin-left: 12rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.code-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18rpx;
+  padding: 16rpx 20rpx;
+  border-radius: 12rpx;
+  background: #FAF8F5;
+}
+
+.code-main {
+  display: flex;
+  align-items: baseline;
+}
+
+.code-label {
+  color: var(--color-text-light);
+  font-size: 19rpx;
+}
+
+.code-value {
+  margin-left: 12rpx;
+  color: var(--color-primary);
+  font-family: "DIN Alternate", "Helvetica Neue", sans-serif;
+  font-size: 46rpx;
+  font-weight: 700;
+  letter-spacing: 4rpx;
+  line-height: 1.1;
+}
+
+.code-hint {
+  color: var(--color-text-light);
+  font-size: 19rpx;
+}
+
+.code-panel.is-invalid .code-value {
+  color: var(--color-text-light);
+  text-decoration: line-through;
+}
+
+.order-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16rpx;
+}
+
+.order-time {
+  color: var(--color-text-light);
+  font-size: 19rpx;
+}
+
+.cancel-button {
+  height: 56rpx;
+  padding: 0 22rpx;
+  border: 1rpx solid #F1C7B8;
+  border-radius: 999rpx;
+  background: #FFF8F4;
+  color: var(--color-primary);
+  font-size: 21rpx;
+  line-height: 56rpx;
+}
+
+.cancel-button-hover {
+  background: #FFEEE7;
+}
+
+/* 空态 */
+.orders-empty {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 28rpx;
+  padding: 90rpx 28rpx;
+  border-radius: var(--radius);
+  background: var(--color-card);
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 64rpx;
+  line-height: 1;
+}
+
+.empty-title {
+  margin-top: 18rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.empty-desc {
+  margin-top: 6rpx;
+  color: var(--color-text-light);
+  font-size: 22rpx;
+  line-height: 1.6;
+}
+
+.empty-go {
+  height: 64rpx;
+  margin-top: 24rpx;
+  padding: 0 30rpx;
+  border-radius: 999rpx;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-size: 23rpx;
+  font-weight: 600;
+  line-height: 64rpx;
+}

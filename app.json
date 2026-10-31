@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/goods/goods",
+    "pages/orders/orders",
+    "pages/detail/detail",
+    "pages/order/order",
+    "pages/success/success",
+    "pages/merchant/merchant"
+  ],
+  "window": {
+    "navigationBarTitleText": "校园预订自提",
+    "navigationBarBackgroundColor": "#FAF8F5",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#FAF8F5",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#8C8279",
+    "selectedColor": "#E8552D",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/goods/goods",
+        "text": "商品"
+      },
+      {
+        "pagePath": "pages/orders/orders",
+        "text": "订单"
+      },
+      {
+        "pagePath": "pages/merchant/merchant",
+        "text": "商家"
+      }
+    ]
+  },
+  "style": "v2"
+}

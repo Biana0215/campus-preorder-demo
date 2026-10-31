@@ -1,0 +1,99 @@
+<view class="orders-page">
+  <block wx:if="{{loading}}">
+    <view class="sk-block sk-header"></view>
+    <view class="sk-order" wx:for="{{skeletonCards}}" wx:key="*this">
+      <view class="sk-line sk-order-title"></view>
+      <view class="sk-block sk-order-product"></view>
+      <view class="sk-block sk-order-code"></view>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="orders-header">
+      <text class="page-kicker">MY ORDERS</text>
+      <text class="page-title">我的订单</text>
+      <text class="page-subtitle">取货码、时段和历史记录都在这里</text>
+
+      <view class="orders-summary" wx:if="{{totalCount > 0}}">
+        <view class="summary-block">
+          <text class="summary-value">{{totalCount}}</text>
+          <text class="summary-label">全部订单</text>
+        </view>
+        <view class="summary-divider"></view>
+        <view class="summary-block">
+          <text class="summary-value summary-value-primary">{{pendingCount}}</text>
+          <text class="summary-label">待取货</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="order-groups" wx:if="{{groups.length > 0}}">
+      <view
+        class="order-group"
+        wx:for="{{groups}}"
+        wx:key="status"
+        wx:for-item="group"
+      >
+        <view class="group-head">
+          <view class="group-title-wrap">
+            <view class="group-dot group-dot-{{group.key}}"></view>
+            <text class="group-title">{{group.label}}</text>
+            <text class="group-count">{{group.count}} 单</text>
+          </view>
+          <text class="group-hint">{{group.hint}}</text>
+        </view>
+
+        <view
+          class="order-card"
+          wx:for="{{group.orders}}"
+          wx:key="id"
+          wx:for-item="order"
+        >
+          <view class="order-card-head">
+            <view class="order-store">
+              <view class="store-dot"></view>
+              <text class="order-store-name">{{order.storeName}}</text>
+            </view>
+            <text class="status-tag status-{{order.statusClass}}">{{order.status}}</text>
+          </view>
+
+          <view class="order-product">
+            <view class="product-thumb tone-{{order.goodsTone}}">{{order.goodsEmoji}}</view>
+            <view class="product-main">
+              <text class="product-name">{{order.goodsName}}</text>
+              <text class="product-spec">{{order.specName}} · ×{{order.quantity}}</text>
+              <text class="product-slot">{{order.pickupSlot}} 自提</text>
+            </view>
+            <text class="product-price">¥{{order.priceText}}</text>
+          </view>
+
+          <view class="code-panel {{order.codeValid ? '' : 'is-invalid'}}">
+            <view class="code-main">
+              <text class="code-label">{{order.codeValid ? '取货码' : '取货码已失效'}}</text>
+              <text class="code-value">{{order.pickupCode}}</text>
+            </view>
+            <text class="code-hint">{{order.codeHint}}</text>
+          </view>
+
+          <view class="order-card-foot">
+            <text class="order-time">{{order.createdText}} 下单</text>
+            <button
+              wx:if="{{order.canCancel}}"
+              class="cancel-button"
+              hover-class="cancel-button-hover"
+              data-id="{{order.id}}"
+              catchtap="onCancel"
+            >取消预订</button>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="orders-empty" wx:else>
+      <text class="empty-icon">🎟️</text>
+      <text class="empty-title">还没有预订记录</text>
+      <text class="empty-desc">挑一家校园好店，提前订好明天的那一口。</text>
+      <button class="empty-go" bindtap="goGoods">去逛商品</button>
+    </view>
+  </block>
+</view>

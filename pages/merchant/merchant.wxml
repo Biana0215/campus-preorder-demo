@@ -1,0 +1,187 @@
+<view class="merchant-page">
+  <block wx:if="{{loading}}">
+    <view class="sk-block sk-merchant-header"></view>
+    <view class="sk-block sk-bars-card"></view>
+    <view class="sk-block sk-section-title"></view>
+    <view class="sk-order-card" wx:for="{{skeletonCards}}" wx:key="*this">
+      <view class="sk-line sk-order-line"></view>
+      <view class="sk-line sk-order-line-short"></view>
+      <view class="sk-line sk-order-line"></view>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="merchant-header">
+      <view class="header-top">
+        <view class="header-copy">
+          <text class="merchant-kicker">MERCHANT CONSOLE</text>
+          <text class="merchant-title">商家工作台</text>
+          <text class="merchant-store">{{activeStore.address}}</text>
+        </view>
+        <view class="today-chip">今日</view>
+      </view>
+
+      <view class="store-switch">
+        <view
+          class="store-switch-item {{activeStoreId === item.id ? 'is-active' : ''}}"
+          wx:for="{{stores}}"
+          wx:key="id"
+          data-id="{{item.id}}"
+          bindtap="onStoreSwitch"
+        >{{item.shortName}}</view>
+      </view>
+
+      <view class="overview-head">
+        <text class="overview-title">今日概览</text>
+        <text class="overview-hint">当前门店</text>
+      </view>
+
+      <view class="stats-row">
+        <view class="stat-card">
+          <text class="stat-value">{{totalCount}}</text>
+          <text class="stat-label">今日订单数</text>
+        </view>
+        <view class="stat-card stat-card-pending">
+          <text class="stat-value">{{pendingCount}}</text>
+          <text class="stat-label">待取货数</text>
+        </view>
+        <view class="stat-card stat-card-done">
+          <text class="stat-value">{{verifiedCount}}</text>
+          <text class="stat-label">已核销数</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="bars-card">
+      <view class="bars-head">
+        <text class="bars-title">分时段待取货</text>
+        <text class="bars-hint">共 {{pendingCount}} 单</text>
+      </view>
+      <view class="bar-row" wx:for="{{slotBars}}" wx:key="slot">
+        <text class="bar-time">{{item.time}}</text>
+        <view class="bar-track">
+          <view class="bar-fill" style="width: {{item.percent}}%;"></view>
+        </view>
+        <text class="bar-count">{{item.count}}</text>
+      </view>
+    </view>
+
+    <view class="section-head">
+      <view>
+        <text class="section-title">待取货订单</text>
+        <text class="section-sub">{{activeStore.name}} · 按取货时段分组</text>
+      </view>
+      <text class="section-count">{{pendingCount}} 单</text>
+    </view>
+
+    <view class="group-list" wx:if="{{groups.length > 0}}">
+      <view
+        class="slot-group"
+        wx:for="{{groups}}"
+        wx:key="slot"
+        wx:for-item="group"
+      >
+        <view class="group-head">
+          <view class="group-time-wrap">
+            <text class="group-time">{{group.slot}}</text>
+            <text class="group-tag">取货时段</text>
+          </view>
+          <text class="group-count">{{group.count}} 单</text>
+        </view>
+
+        <view
+          class="order-row"
+          wx:for="{{group.orders}}"
+          wx:key="id"
+          wx:for-item="order"
+        >
+          <view class="code-block">
+            <text class="order-code">{{order.pickupCode}}</text>
+            <text class="code-label">取货码</text>
+          </view>
+
+          <view class="order-main">
+            <text class="order-goods">{{order.goodsName}}<text class="order-qty"> × {{order.quantity}}</text></text>
+            <text class="order-sub">{{order.specName}} · {{order.pickupPerson}}</text>
+            <text class="order-note {{order.hasNote ? '' : 'is-empty'}}">备注：{{order.noteText}}</text>
+          </view>
+
+          <button
+            class="verify-button"
+            hover-class="verify-button-hover"
+            catchtap="onVerify"
+            data-id="{{order.id}}"
+          >核销</button>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:else>
+      <view class="empty-icon">✓</view>
+      <text class="empty-title">当前门店暂无待取货订单</text>
+      <text class="empty-desc">切换门店，或等待新的预订。</text>
+    </view>
+
+    <view class="history-card" wx:if="{{verifiedOrders.length > 0}}">
+      <view class="history-head">
+        <view>
+          <text class="history-title">已核销订单</text>
+          <text class="history-sub">如有误操作，可撤销核销</text>
+        </view>
+        <text class="history-count">{{verifiedOrders.length}} 单</text>
+      </view>
+
+      <view
+        class="history-row"
+        wx:for="{{verifiedOrders}}"
+        wx:key="id"
+        wx:for-item="order"
+      >
+        <text class="history-code">{{order.pickupCode}}</text>
+        <view class="history-main">
+          <view class="history-title-row">
+            <text class="history-goods">{{order.goodsName}}</text>
+            <text class="status-tag status-picked">{{order.status}}</text>
+          </view>
+          <text class="history-meta">{{order.specName}} · {{order.pickupPerson}} · {{order.pickupSlot}}</text>
+        </view>
+        <button
+          class="undo-button"
+          hover-class="undo-button-hover"
+          catchtap="onUndo"
+          data-id="{{order.id}}"
+        >撤销核销</button>
+      </view>
+    </view>
+
+    <view class="inactive-card" wx:if="{{inactiveCount > 0}}">
+      <view class="inactive-head" bindtap="onToggleInactive">
+        <view class="inactive-title-wrap">
+          <text class="inactive-title">已取消 / 已过期</text>
+          <text class="inactive-count">{{inactiveCount}} 单</text>
+        </view>
+        <text class="inactive-toggle">{{showInactive ? '收起' : '展开'}}</text>
+      </view>
+
+      <view class="inactive-list" wx:if="{{showInactive}}">
+        <view
+          class="inactive-row"
+          wx:for="{{inactiveOrders}}"
+          wx:key="id"
+          wx:for-item="order"
+        >
+          <view class="inactive-row-head">
+            <text class="inactive-code">{{order.pickupCode}}</text>
+            <text class="status-tag status-{{order.statusClass}}">{{order.status}}</text>
+          </view>
+          <text class="inactive-goods">{{order.goodsName}} · {{order.specName}}</text>
+          <text class="inactive-meta">{{order.pickupPerson}} · {{order.pickupSlot}} · 取货码已失效</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="merchant-tip">
+      <text>核销后可在「已核销订单」撤销；取消 / 过期订单默认折叠。</text>
+    </view>
+  </block>
+</view>
